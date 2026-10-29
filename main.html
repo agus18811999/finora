@@ -593,10 +593,30 @@ function render() {
   finoraSyncIdentity_();
 
   // Render chart setelah DOM diperbarui
-  requestAnimationFrame(() => {
+  
+const drawCharts = () => {
+  if (!state.snap) return;
+
+  try {
     renderCharts();
+  } catch (error) {
+    console.warn('Finora charts:', error);
+  }
+
+  try {
     V3renderChart();
+  } catch (error) {
+    console.warn('Finora V3 charts:', error);
+  }
+};
+
+if ('requestIdleCallback' in window) {
+  requestIdleCallback(drawCharts, {
+    timeout: 800
   });
+} else {
+  setTimeout(drawCharts, 80);
+}
 }
 
 function colorList(){return ['#FF5364','#fb8995','#ffb2bc','#f1c5cc','#15966c','#40b98d','#a166f2','#f5aa55','#6877d7','#75848f','#64b3c1','#d99eae']}
