@@ -349,7 +349,7 @@ async function finoraBoot_() {
 }
 
 
-async function refresh(silent=false){if(state.busy)return;state.busy=true;setStatus('Sinkronisasi...','pending');try{state.snap=await rpc('snapshotFresh');setStatus('Sinkron '+state.snap.serverTime.slice(11,16),'');render();if(!silent)toast('Data berhasil disinkronkan')}catch(e){setStatus('Koneksi gagal','error');if(!state.snap){$('content').innerHTML=`<div class="empty"><span class="icon">⚠</span><h3>Tidak dapat memuat data</h3><p>${esc(e.message)}</p><div class="mt-4"><button class="btn btn-primary" data-task="refresh">Coba lagi</button></div></div>`;}toast(e.message,true)}finally{state.busy=false}}
+async function refresh(silent=false){if(state.busy)return;state.busy=true;setStatus('Sinkronisasi...','pending');try{state.snap=await rpc('snapshotFresh');finoraLazyInit_(state.snap);setStatus('Sinkron '+state.snap.serverTime.slice(11,16),'');render();if(!silent)toast('Data berhasil disinkronkan')}catch(e){setStatus('Koneksi gagal','error');if(!state.snap){$('content').innerHTML=`<div class="empty"><span class="icon">⚠</span><h3>Tidak dapat memuat data</h3><p>${esc(e.message)}</p><div class="mt-4"><button class="btn btn-primary" data-task="refresh">Coba lagi</button></div></div>`;}toast(e.message,true)}finally{state.busy=false}}
 
 
 async function saveAction(action, payload, modalClose = true) {
@@ -2407,7 +2407,11 @@ document.addEventListener('change',e=>{const id=e.target.id;if(id==='periodSelec
 document.addEventListener('input',e=>{if(e.target.id==='searchFilter'){const value=e.target.value;clearTimeout(searchTimer);searchTimer=setTimeout(()=>{state.search=value;state.page=1;render();const input=$('searchFilter');if(input){input.focus();input.setSelectionRange(value.length,value.length)}},260)}});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&state.modal)closeModal()});$('menuBtn').addEventListener('click',()=>$('sidebar').classList.add('open'));$('closeSide').addEventListener('click',()=>$('sidebar').classList.remove('open'));$('refreshBtn').addEventListener('click',()=>refresh());
 $('profileBtn').addEventListener('click',()=>openView('profile'));
-window.addEventListener('load',finoraBoot_);
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded',finoraBoot_,{once:true});
+} else {
+  finoraBoot_();
+}
 setStatus('Perlu koneksi','pending');
 </script>
 </body>
