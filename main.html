@@ -289,7 +289,8 @@ async function finoraBoot_() {
 
     setStatus('Memuat data keuangan...', 'pending');
 
-    state.snap = await rpc('snapshot');
+    state.snap = await rpc('snapshotCore');
+    finoraLazyInit_(state.snap);
 
     console.info(
       'Finora total startup:',
@@ -355,6 +356,8 @@ async function saveAction(action, payload, modalClose = true) {
     } else {
       state.snap = await rpc('snapshotFresh');
     }
+    finoraLazyInit_(state.snap);
+    
 
     setStatus(
       'Sinkron ' + state.snap.serverTime.slice(11, 16),
@@ -441,6 +444,7 @@ function settingsPage(){const prefs=(d().Settings||[]).find(x=>x.key==='dashboar
 
 function render() {
   if (!state.snap) return;
+  if (finoraLazyGate_()) return;
 
   // Bersihkan chart sebelumnya
   for (const chart of Object.values(state.charts)) {
@@ -778,8 +782,37 @@ async function handleTask(task,el){const id=el.dataset.id;
  if(task==='deleteTx'){if(confirm('Hapus transaksi ini? Seluruh saldo terkait akan dihitung ulang.'))try{await saveAction('deleteTransaction',{id})}catch(e){}return}
  if(task==='deleteBudget'){if(confirm('Hapus budget ini secara permanen?'))try{await saveAction('deleteBudget',{id})}catch(e){}return}
  if(task==='downloadCsv'){download(toCSV(filteredTx(),csvHeaders),'finora-transactions-'+TODAY()+'.csv','text/csv;charset=utf-8');toast('CSV berhasil disiapkan.');return}
- if(task==='backupJson'){download(JSON.stringify({exportedAt:new Date().toISOString(),version:state.snap.version,data:d(),derived:fin()},null,2),'finora-backup-'+TODAY()+'.json','application/json;charset=utf-8');toast('Backup JSON dibuat; simpan secara privat.');return}
- if(task==='csvTemplate'){download(toCSV([],csvHeaders),'finora-csv-template.csv','text/csv;charset=utf-8');return}
+  
+if (task === 'backupJson') {
+  try {
+    // Backup wajib mengambil seluruh database.
+    const complete = await rpc('snapshotFresh');
+
+    state.snap = complete;
+    finoraLazyInit_(complete);
+
+    const backup = {
+      exportedAt: new Date().toISOString(),
+      version: complete.version,
+      data: complete.data,
+      derived: complete.derived
+    };
+
+    download(
+      JSON.stringify(backup, null, 2),
+      'finora-backup-' + TODAY() + '.json',
+      'application/json;charset=utf-8'
+    );
+
+    toast('Backup lengkap berhasil dibuat.');
+  } catch (error) {
+    toast('Backup gagal: ' + error.message, true);
+  }
+
+  return;
+}
+
+if(task==='csvTemplate'){download(toCSV([],csvHeaders),'finora-csv-template.csv','text/csv;charset=utf-8');return}
  if(task==='importConfirm'){if(!state.preview?.length)return;if(!confirm(`Impor ${state.preview.length} transaksi? Pastikan saldo akun mencukupi.`))return;try{const r=await saveAction('importTransactions',{rows:state.preview,requestId:reqId()});state.preview=null;toast(`${r.imported} transaksi diimpor; ${r.skipped} duplikat dilewati.`)}catch(e){}return}
  if(task==='runRecurring'){try{const r=await rpc('runRecurring');await refresh(true);toast(`${r.posted} transaksi dijalankan. ${r.failed.length?'Gagal: '+r.failed.join('; '):''}`,Boolean(r.failed.length))}catch(e){toast(e.message,true)}return}
  if(task==='print'){if(state.view!=='reports'){state.view='reports';render();requestAnimationFrame(()=>window.print())}else window.print();return}
@@ -2201,6 +2234,138 @@ document.addEventListener('click',e=>{
   if(action==='logout')finoraLogout_();
 });
 
+/* =========================================
+   FINORA — LAZY DATA LOADING FRONTEND
+   ========================================= */
+
+const FINORA_LAZY_VIEWS = Object.freeze({
+  analytics: ['Budgets'],
+  budgets: ['Budgets'],
+  health: ['Budgets'],
+  reports: ['Budgets'],
+  data: ['AuditLogs'],
+
+  recurring: ['RecurringRules'],
+  calendar: ['RecurringRules'],
+
+  forecast: ['RecurringRules', 'Subscriptions'],
+  risk: ['RecurringRules', 'Subscriptions'],
+
+  bills: ['Subscriptions', 'BillPayments'],
+  receipts: ['ReceiptAttachments'],
+
+  refunds: ['RefundClaims', 'RefundReceipts'],
+
+  split: [
+    'SharedBills',
+    'SharedShares',
+    'SharedSettlements'
+  ]
+});
+
+const finoraLazyLoaded = new Set();
+const finoraLazyPending = new Map();
+
+// Tandai tabel yang sudah tersedia.
+function finoraLazyInit_(snap) {
+  finoraLazyLoaded.clear();
+
+  const names = snap?.loadedTables ||
+    Object.keys(snap?.data || {});
+
+  names.forEach(name => finoraLazyLoaded.add(name));
+}
+
+// Cegah halaman menampilkan data parsial.
+function finoraLazyGate_() {
+  const view = state.view;
+  const required = FINORA_LAZY_VIEWS[view] || [];
+
+  if (required.every(name => finoraLazyLoaded.has(name))) {
+    return false;
+  }
+
+  $('navigation').innerHTML = navHtml();
+  $('crumb').textContent = titleFor(view);
+
+  $('content').innerHTML = `
+    <div class="pages">
+      <div class="empty">
+        <span class="icon">◈</span>
+        <h3>Memuat ${esc(titleFor(view))}...</h3>
+        <p>Mengambil data modul ini dari Google Sheets.</p>
+      </div>
+    </div>
+  `;
+
+  // Jangan mengirim request berulang untuk menu sama.
+  if (finoraLazyPending.has(view)) return true;
+
+  const snap = state.snap;
+
+  const task = rpc('loadModule', { view })
+    .then(result => {
+      const tables = result?.tables || {};
+
+      required.forEach(name => {
+        if (!Array.isArray(tables[name])) {
+          throw new Error(
+            'Data ' + name + ' tidak lengkap.'
+          );
+        }
+      });
+
+      // Abaikan respons lama setelah sinkronisasi baru.
+      if (state.snap !== snap) return;
+
+      required.forEach(name => {
+        state.snap.data[name] = tables[name];
+        finoraLazyLoaded.add(name);
+      });
+    })
+    .catch(error => {
+      if (state.snap !== snap || state.view !== view) {
+        return;
+      }
+
+      $('content').innerHTML = `
+        <div class="pages">
+          <div class="empty">
+            <span class="icon">⚠</span>
+            <h3>Gagal memuat modul</h3>
+            <p>${esc(error.message)}</p>
+            <button type="button"
+              class="btn btn-primary mt-3"
+              data-finora-lazy-retry>
+              Coba lagi
+            </button>
+          </div>
+        </div>
+      `;
+    })
+    .finally(() => {
+      finoraLazyPending.delete(view);
+
+      if (
+        state.snap === snap &&
+        state.view === view &&
+        required.every(name => finoraLazyLoaded.has(name))
+      ) {
+        render();
+      }
+    });
+
+  finoraLazyPending.set(view, task);
+  return true;
+}
+
+// Tombol ulangi jika modul gagal dimuat.
+document.addEventListener('click', e => {
+  if (e.target.closest('[data-finora-lazy-retry]')) {
+    e.preventDefault();
+    render();
+  }
+});
 let searchTimer;
 document.addEventListener('input', function (e) {
   if (!e.target.matches('input[data-rupiah]')) return;
