@@ -1105,6 +1105,8 @@ function openQuickAdd(templateId = '') {
 
     const form = e.currentTarget;
     const payload = Object.fromEntries(new FormData(form));
+    payload.dream = form.querySelector('#profDream').value.trim();
+    payload.website = form.querySelector('#profWebsite').value.trim();
 
     delete payload.templateName;
     payload.amount = safeMoney(payload.amount);
