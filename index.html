@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#FF3347">
+  <title>Masuk / Daftar — Finora</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='17' fill='%23FF3347'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='Arial' font-size='44' font-weight='bold' fill='white'%3EF%3C/text%3E%3C/svg%3E">
+  <script>
+    // SAME APPS SCRIPT /exec URL as index.html. One Code.gs handles everything.
+    const FINORA_AUTH_CONFIG={APPS_SCRIPT_URL:'https://script.google.com/macros/s/AKfycbySCkiPzbAw66L9duHBoizBfWH9NeXRuIG8pB4Hq5CmU4wMUaf5xaYLm9b40qkauMY1/exec'};
+  </script>
+  <style>
+    :root{--red:#ff3347;--rose:#ff7582;--ink:#20212a;--muted:#89858f;--line:#f3e4e8}
+    *{box-sizing:border-box}body{margin:0;background:#fffafa;color:var(--ink);font:14px/1.6 'Plus Jakarta Sans',system-ui,sans-serif}button,input{font:inherit}button{cursor:pointer}button:disabled{opacity:.56;cursor:wait}.shell{min-height:100dvh;display:grid;grid-template-columns:minmax(0,1fr) minmax(400px,540px)}
+    .showcase{color:white;background:linear-gradient(128deg,#ff3347 0%,#ff5364 49%,#ff91a0 100%);padding:clamp(30px,6vw,85px);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between}
+    .showcase:before{content:'';position:absolute;width:700px;height:700px;border:1px solid #ffffff4d;border-radius:50%;right:-350px;top:13%;box-shadow:0 0 0 85px #ffffff14,0 0 0 175px #ffffff10,0 0 0 270px #ffffff0b}
+    .showcase>*{position:relative;z-index:1}.brand{display:flex;align-items:center;gap:12px;font-size:29px;font-weight:900;letter-spacing:-1.5px}.brand-logo{background:#ffffff2e;width:52px;height:52px;border-radius:17px;display:grid;place-items:center;border:1px solid #ffffff6e}.eyebrow{font-size:11px;letter-spacing:2.6px;text-transform:uppercase;font-weight:900;opacity:.84}.main-title{font-size:clamp(38px,5vw,78px);line-height:1.1;letter-spacing:-3.5px;margin:15px 0 24px;max-width:760px;font-weight:800}.intro{font-size:clamp(14px,1.3vw,18px);max-width:510px;opacity:.92}.metric-row{display:flex;gap:16px;flex-wrap:wrap;margin-top:45px}.stat{border:1px solid #ffffff58;background:#ffffff1c;backdrop-filter:blur(12px);padding:18px 21px;border-radius:17px;min-width:175px}.stat strong{font-size:22px;display:block}.stat span{font-size:11px;opacity:.87}.legal{font-size:11px;opacity:.8;margin-top:45px}
+    .right{padding:32px clamp(24px,5.5vw,75px);display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at top right,#ffe8eb 0,transparent 52%),#fffafa}.panel{width:min(100%,430px)}.mini{display:flex;align-items:center;gap:8px;margin-bottom:33px;font-size:13px;font-weight:800}.mini b{height:34px;width:34px;background:linear-gradient(140deg,#ff3347,#ff8090);color:white;border-radius:11px;display:grid;place-items:center}.headline{font-size:31px;line-height:1.2;letter-spacing:-1.4px;margin:0 0 9px}.sub{color:var(--muted);font-size:12px;margin:0 0 26px}.tabs{display:flex;gap:5px;background:#fff1f3;border-radius:13px;padding:5px;margin:0 0 25px}.tab{flex:1;border:0;background:transparent;padding:11px;border-radius:9px;color:#a16570;font-size:12px;font-weight:800}.tab[aria-selected=true]{color:var(--red);background:white;box-shadow:0 3px 12px #d0475815}.field{margin-bottom:15px}.field label{font-weight:800;font-size:11px;margin-bottom:6px;display:block}.field input{width:100%;background:white;border:1px solid #ebdfe3;border-radius:12px;min-height:47px;padding:12px 14px;outline:none;color:var(--ink);font-size:12px}.field input:focus{border-color:#ff6575;box-shadow:0 0 0 3px #ff334716}.forgot{color:var(--red);font-size:11px;font-weight:800;background:none;border:0;padding:0}.strip{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:16px}.muted{color:#91858c;font-size:11px}.primary{border:0;width:100%;border-radius:12px;padding:14px;color:white;font-weight:900;background:linear-gradient(110deg,var(--red),#ff7582);box-shadow:0 12px 25px #ff536440}.outline{width:100%;border:1px solid #f1dce1;border-radius:12px;padding:12px;background:white;color:var(--red);font-weight:800;margin-top:11px}.note{font-size:11px;color:#91858c;margin-top:20px;line-height:1.8}.message{margin:18px 0;padding:12px 14px;border-radius:12px;background:#fff0f2;border:1px solid #ffd3da;color:#b3223d;font-size:12px}.message.ok{background:#e9f9f1;border-color:#bae9cf;color:#14634c}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:19px}.actions button{background:none;border:0;color:var(--red);font-size:11px;font-weight:800;padding:0}.hidden,[hidden]{display:none!important}
+    @media(max-width:850px){.shell{grid-template-columns:1fr}.showcase{min-height:210px;padding:24px 22px}.showcase .main-title{font-size:32px;letter-spacing:-1px}.showcase .intro{font-size:12px}.showcase .metric-row,.showcase .legal{display:none}.right{padding:35px 20px 55px}.panel{max-width:480px}.mini{display:none}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="showcase" aria-label="Tentang Finora">
+    <div class="brand"><div class="brand-logo">F</div> finora<span style="opacity:.6">.</span></div>
+    <div><div class="eyebrow">Personal wealth workspace</div><h1 class="main-title">Uang lebih tertata.<br>Impian lebih dekat.</h1><p class="intro">Catat transaksi, buat kantong tabungan, dan pahami kondisi finansial dalam satu ruang pribadi yang aman.</p><div class="metric-row"><div class="stat"><strong>Privat</strong><span>Database terpisah per akun</span></div><div class="stat"><strong>Lengkap</strong><span>Budget, investasi, laporan</span></div></div></div>
+    <p class="legal">© Finora • Built for mindful money management</p>
+  </aside>
+  <main class="right">
+    <section class="panel" aria-label="Masuk dan daftar">
+      <div class="mini"><b>F</b> FINORA / MEMBER ACCESS</div>
+      <h2 class="headline" id="headline">Selamat datang kembali</h2>
+      <p class="sub" id="subhead">Masuk untuk melanjutkan perjalanan finansialmu.</p>
+      <div class="tabs" role="tablist" id="tabs"><button type="button" role="tab" aria-selected="true" class="tab" data-mode="login">Masuk</button><button type="button" role="tab" aria-selected="false" class="tab" data-mode="register">Daftar akun</button></div>
+      <form id="authForm" autocomplete="on">
+        <div class="field" id="nameWrap" hidden><label for="name">Nama lengkap</label><input id="name" name="name" autocomplete="name" minlength="2" maxlength="90" placeholder="Nama lengkap kamu"></div>
+        <div class="field"><label for="email">Alamat email</label><input id="email" name="email" type="email" autocomplete="email" placeholder="nama@email.com" required></div>
+        <div class="field" id="passwordWrap"><div class="strip"><label for="password">Password</label><button type="button" class="forgot" id="forgotBtn">Lupa password?</button></div><input id="password" name="password" type="password" minlength="10" autocomplete="current-password" placeholder="Minimal 10 karakter" required></div>
+        <div class="field" id="confirmWrap" hidden><label for="confirm">Ulangi password</label><input id="confirm" name="confirm" type="password" minlength="10" autocomplete="new-password" placeholder="Konfirmasi password"></div>
+        <button class="primary" id="submitBtn" type="submit">Masuk ke Finora</button>
+      </form>
+      <div id="result" role="status" aria-live="polite" hidden></div>
+      <div class="actions"><button type="button" id="resendBtn" hidden>Kirim ulang verifikasi email</button><button type="button" id="backBtn" hidden>Kembali ke login</button></div>
+      <p class="note">Dengan mendaftar, data keuanganmu ditempatkan dalam spreadsheet privat. Password dikelola Firebase Authentication; tidak disimpan di Google Sheets. Untuk privasi sepenuhnya dari administrator, diperlukan arsitektur terenkripsi end-to-end.</p>
+    </section>
+  </main>
+</div>
+
+<!-- FINORA — SHOW / HIDE PASSWORD -->
+<style>
+  .finora-password-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  .finora-password-wrapper input {
+    padding-right: 52px !important;
+  }
+
+  .finora-eye-btn {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    border-radius: 9px;
+    color: #82838F;
+    cursor: pointer;
+    transition: color .2s, background .2s;
+  }
+
+  .finora-eye-btn:hover {
+    color: #FF3347;
+    background: #FFE8EB;
+  }
+
+  .finora-eye-btn svg {
+    width: 19px;
+    height: 19px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    pointer-events: none;
+  }
+</style>
+
+<script>
+(function () {
+  'use strict';
+
+  const eyeOpen = `
+    <svg viewBox="0 0 24 24">
+      <path d="M2 12s3.5-7 10-7 10 7 10 7
+               -3.5 7-10 7S2 12 2 12Z"/>
+      <circle cx="12" cy="12" r="3"/>
+    </svg>
+  `;
+
+  const eyeClosed = `
+    <svg viewBox="0 0 24 24">
+      <path d="M3 3l18 18"/>
+      <path d="M10.6 5.1A10.5 10.5 0 0 1 12 5
+               c6.5 0 10 7 10 7
+               a14 14 0 0 1-3.2 4.2"/>
+      <path d="M6.2 6.2C3.5 8.1 2 12 2 12
+               s3.5 7 10 7
+               a10 10 0 0 0 4-0.8"/>
+      <path d="M10 10a3 3 0 0 0 4 4"/>
+    </svg>
+  `;
+
+  document.querySelectorAll(
+    'input[type="password"]'
+  ).forEach(input => {
+
+    // Hindari tombol mata ganda
+    if (input.parentElement.classList.contains(
+      'finora-password-wrapper'
+    )) return;
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'finora-password-wrapper';
+
+    input.parentNode.insertBefore(wrapper, input);
+    wrapper.appendChild(input);
+
+    const button = document.createElement('button');
+
+    button.type = 'button';
+    button.className = 'finora-eye-btn';
+    button.innerHTML = eyeOpen;
+    button.title = 'Lihat password';
+    button.setAttribute('aria-label', 'Lihat password');
+    button.setAttribute('aria-pressed', 'false');
+
+    button.addEventListener('click', () => {
+      const visible = input.type === 'password';
+
+      input.type = visible ? 'text' : 'password';
+
+      button.innerHTML = visible
+        ? eyeClosed
+        : eyeOpen;
+
+      button.title = visible
+        ? 'Sembunyikan password'
+        : 'Lihat password';
+
+      button.setAttribute(
+        'aria-label',
+        button.title
+      );
+
+      button.setAttribute(
+        'aria-pressed',
+        String(visible)
+      );
+
+      input.focus();
+    });
+
+    wrapper.appendChild(button);
+  });
+})();
+</script>
+
+<script>
+'use strict';
+const $=id=>document.getElementById(id), SESSION_KEY='FINORA_MULTI_SESSION_V1';
+let screen='login',busy=false;
+function showResult(text,ok=false){const el=$('result');el.hidden=false;el.className='message'+(ok?' ok':'');el.textContent=text;}
+function changeMode(mode){screen=mode;$('result').hidden=true;
+  $('tabs').hidden=mode==='forgot';
+  document.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.mode===mode)));
+  $('nameWrap').hidden=mode!=='register';$('confirmWrap').hidden=mode!=='register';$('passwordWrap').hidden=mode==='forgot';
+  $('password').required=mode!=='forgot';$('name').required=mode==='register';$('confirm').required=mode==='register';
+  $('password').autocomplete=mode==='register'?'new-password':'current-password';
+  $('headline').textContent={login:'Selamat datang kembali',register:'Buat akun Finora',forgot:'Pulihkan password'}[mode];
+  $('subhead').textContent={login:'Masuk untuk melanjutkan perjalanan finansialmu.',register:'Setiap pengguna memiliki ruang keuangan tersendiri.',forgot:'Kami akan mengirim tautan reset melalui email.'}[mode];
+  $('submitBtn').textContent={login:'Masuk ke Finora',register:'Buat akun gratis',forgot:'Kirim tautan reset'}[mode];
+  $('backBtn').hidden=mode!=='forgot';$('forgotBtn').hidden=mode!=='login';$('resendBtn').hidden=true;
+}
+function getUrl(){const u=FINORA_AUTH_CONFIG.APPS_SCRIPT_URL;
+  if(!/^https:\/\/script\.google\.com\/macros\/s\/[^/]+\/exec$/.test(u))throw new Error('Masukkan URL Web App Apps Script yang valid.');
+  if(location.origin==='null'||!/^https?:$/.test(location.protocol))throw new Error('Jalankan login.html via Live Server atau hosting HTTPS.');
+  return u;
+}
+function nonce(){const bytes=new Uint8Array(16);crypto.getRandomValues(bytes);return Array.from(bytes,x=>x.toString(16).padStart(2,'0')).join('');}
+function rpc(action,payload){const url=getUrl(),id='finora_'+nonce();return new Promise((resolve,reject)=>{
+  const iframe=document.createElement('iframe');iframe.name=id;iframe.title='Finora backend response';iframe.style.cssText='position:absolute;height:1px;width:1px;opacity:0;pointer-events:none';iframe.setAttribute('aria-hidden','true');
+  const form=document.createElement('form');form.method='POST';form.action=url;form.target=id;form.style.display='none';form.acceptCharset='UTF-8';
+  function input(k,v){let i=document.createElement('input');i.type='hidden';i.name=k;i.value=v;form.append(i);}
+  input('requestId',id);input('replyOrigin',location.origin);input('request',JSON.stringify({action,payload}));
+  let done=false;const timer=setTimeout(()=>finish(new Error('Server tidak merespons. Periksa deployment dan koneksi.')),90000);
+  function finish(err,data){if(done)return;done=true;clearTimeout(timer);window.removeEventListener('message',reply);setTimeout(()=>{iframe.remove();form.remove()},100);err?reject(err):resolve(data);}
+  function reply(e){if(!/^https:\/\/([a-z0-9-]+\.)*googleusercontent\.com$/.test(e.origin)&&e.origin!=='https://script.google.com')return;
+    const x=e.data;if(x?.channel!=='FINORA_GAS_RPC_V1'||x.requestId!==id)return;
+    if(x.result?.success)finish(null,x.result.data);else finish(new Error(x.result?.error?.message||'Request ditolak.'));
+  }
+  window.addEventListener('message',reply);document.body.append(iframe,form);try{form.submit()}catch(e){finish(e)}
+});}
+function remember(data){sessionStorage.setItem(SESSION_KEY,JSON.stringify({idToken:data.idToken,refreshToken:data.refreshToken,email:data.email,name:data.name,uid:data.uid,expiresAt:Date.now()+Number(data.expiresIn||3600)*1000}));}
+$('authForm').addEventListener('submit',async e=>{
+  e.preventDefault();if(busy)return;
+  const p=Object.fromEntries(new FormData(e.currentTarget).entries());
+  if(screen==='register'&&p.password!==p.confirm){showResult('Konfirmasi password belum sama.');return;}
+  if(screen==='register'&&p.password.length<10){showResult('Gunakan password minimal 10 karakter.');return;}
+  delete p.confirm;busy=true;$('submitBtn').disabled=true;$('submitBtn').textContent='Memproses...';$('result').hidden=true;
+  try{
+    const a={login:'authLogin',register:'authRegister',forgot:'authReset'}[screen];const result=await rpc(a,p);
+    if(screen==='login'){
+      remember(result);location.replace('main.html');return;
+    }
+    if(screen==='register'){showResult(result.message||'Cek email untuk verifikasi.',true);changeMode('login');showResult('Registrasi berhasil. Periksa inbox/spam untuk tautan verifikasi, kemudian login.',true);}
+    else{showResult(result.message||'Jika email terdaftar, tautan reset akan dikirim.',true);}
+  }catch(err){showResult(err.message);if(screen==='login'&&/verifikasi/i.test(err.message))$('resendBtn').hidden=false;}
+  finally{busy=false;$('submitBtn').disabled=false;$('submitBtn').textContent={login:'Masuk ke Finora',register:'Buat akun gratis',forgot:'Kirim tautan reset'}[screen];}
+});
+$('resendBtn').addEventListener('click',async()=>{
+  const email=$('email').value,password=$('password').value;
+  if(!email||!password){showResult('Masukkan email dan password untuk mengirim verifikasi ulang.');return;}
+  $('resendBtn').disabled=true;
+  try{const r=await rpc('authResendVerification',{email,password});showResult(r.message||'Email verifikasi terkirim.',true);}catch(e){showResult(e.message)}finally{$('resendBtn').disabled=false;}
+});
+document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>changeMode(b.dataset.mode)));
+$('forgotBtn').addEventListener('click',()=>changeMode('forgot'));
+$('backBtn').addEventListener('click',()=>changeMode('login'));
+if(new URLSearchParams(location.search).get('session'))showResult('Sesi sudah berakhir. Silakan masuk kembali.');
+else{try{const s=JSON.parse(sessionStorage.getItem(SESSION_KEY)||'null');if(s?.idToken&&s?.expiresAt>Date.now()+60000)location.replace('main.html');}catch(e){}}
+</script>
+</body>
+</html>
