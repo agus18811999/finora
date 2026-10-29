@@ -267,19 +267,74 @@ async function rpc(action,payload={}){
   });
 }
 // Each Firebase credential is verified server-side and data is scoped to its UID.
-async function finoraBoot_(){
-  if(!finoraReadSession_()){location.replace('index.html');return;}
-  try{
+
+async function finoraBoot_() {
+  if (!finoraReadSession_()) {
+    location.replace('index.html');
+    return;
+  }
+
+  const start = performance.now();
+
+  try {
+    setStatus('Memverifikasi sesi...', 'pending');
+
     await finoraEnsureSession_();
-    state.snap=await rpc('snapshot');
+
+    console.info(
+      'Finora session:',
+      Math.round(performance.now() - start),
+      'ms'
+    );
+
+    setStatus('Memuat data keuangan...', 'pending');
+
+    state.snap = await rpc('snapshot');
+
+    console.info(
+      'Finora total startup:',
+      Math.round(performance.now() - start),
+      'ms'
+    );
+
+    if (!state.snap?.data || !state.snap?.derived) {
+      throw new Error('Data dashboard tidak lengkap.');
+    }
+
     finoraSyncIdentity_();
-    setStatus('Sinkron '+state.snap.serverTime.slice(11,16),'');
+
+    setStatus(
+      'Sinkron ' + state.snap.serverTime.slice(11, 16),
+      ''
+    );
+
     render();
-  }catch(e){
-    sessionStorage.removeItem(FINORA_SESSION_KEY);
-    location.replace('index.html?session=expired');
+
+  } catch (error) {
+    console.error('Finora startup error:', error);
+
+    setStatus('Gagal memuat', 'error');
+
+    $('content').innerHTML = `
+      <div class="empty">
+        <span class="icon">⚠</span>
+        <h3>Gagal memuat dashboard</h3>
+        <p>${esc(error.message)}</p>
+        <div class="toolbar mt-4"
+             style="justify-content:center">
+          <button class="btn btn-primary"
+                  onclick="location.reload()">
+            Coba Lagi
+          </button>
+          <a class="btn btn-light" href="index.html">
+            Kembali ke Login
+          </a>
+        </div>
+      </div>
+    `;
   }
 }
+
 
 async function refresh(silent=false){if(state.busy)return;state.busy=true;setStatus('Sinkronisasi...','pending');try{state.snap=await rpc('snapshotFresh');setStatus('Sinkron '+state.snap.serverTime.slice(11,16),'');render();if(!silent)toast('Data berhasil disinkronkan')}catch(e){setStatus('Koneksi gagal','error');if(!state.snap){$('content').innerHTML=`<div class="empty"><span class="icon">⚠</span><h3>Tidak dapat memuat data</h3><p>${esc(e.message)}</p><div class="mt-4"><button class="btn btn-primary" data-task="refresh">Coba lagi</button></div></div>`;}toast(e.message,true)}finally{state.busy=false}}
 
