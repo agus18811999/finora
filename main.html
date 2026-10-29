@@ -222,6 +222,7 @@ function browserNonce(){
 // Real POST, not fetch/no-cors. HTML-service response sends a verified
 // postMessage to its allowed parent origin; no proxy or third source file.
 async function rpc(action,payload={}){
+  const finoraRpcStarted = performance.now();
   const scriptUrl=checkConfig();
   if(!/^auth(?:Refresh|Reset|Register|Login|ResendVerification)$/.test(action))await finoraEnsureSession_();
   const id='finora_'+browserNonce();
@@ -241,6 +242,17 @@ async function rpc(action,payload={}){
     const timer=setTimeout(()=>finish(new Error('Server tidak merespons dalam 90 detik. Periksa deployment, login, dan koneksi.')),90000);
     function finish(error,data){
       if(finished)return;finished=true;clearTimeout(timer);
+      
+const duration = Math.round(
+  performance.now() - finoraRpcStarted
+);
+
+console.info(
+  '[FINORA RPC]',
+  action,
+  duration + ' ms',
+  error ? 'FAILED' : 'SUCCESS'
+);
       window.removeEventListener('message',onReply);
       setTimeout(()=>{iframe.remove();form.remove()},100);
       if(error)reject(error);else resolve(data);
