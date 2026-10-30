@@ -1113,6 +1113,46 @@
   color: rgba(255,255,255,.77);
 }
 
+/* FINORA — FIX HERO WHITE BACKGROUND */
+
+.finora-auth-refined aside.fn-auth-saving-hero
+.fn-auth-hero-main {
+  display: grid !important;
+  grid-template-columns:
+    minmax(0, 1.48fr) minmax(0, 1fr);
+
+  align-items: center;
+  gap: 10px;
+
+  width: 100%;
+  min-width: 0;
+  max-width: none !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.finora-auth-refined aside.fn-auth-saving-hero
+.fn-auth-hero-copy {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  min-width: 0;
+}
+
+@media (min-width: 1024px) and (max-width: 1299px) {
+  .finora-auth-refined aside.fn-auth-saving-hero
+  .fn-auth-hero-main {
+    grid-template-columns: 1fr;
+  }
+}
+
 .fn-auth-secure-label {
   display: inline-flex;
   align-items: center;
@@ -1197,7 +1237,8 @@
     </header>
 
     <!-- HERO MAIN CONTENT -->
-    <main class="fn-auth-hero-main">
+   <!-- HERO MAIN CONTENT -->
+<section class="fn-auth-hero-main">
 
       <!-- LEFT CONTENT -->
       <section class="fn-auth-hero-copy">
@@ -1290,7 +1331,9 @@
 
       </div>
 
-    </main>
+   </section>
+
+<!-- HERO FOOTER -->
 
     <!-- HERO FOOTER -->
     <footer class="fn-auth-hero-footer">
