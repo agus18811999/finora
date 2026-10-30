@@ -1200,6 +1200,255 @@
 }
 </style>
 
+<style id="fnV3HeroCSS">
+/* ============================================================
+   FINORA — IMMERSIVE SAVINGS HERO V3
+   Changes affect LEFT auth hero only. Existing form / IDs intact.
+   ============================================================ */
+.finora-auth-refined aside.fn-auth-hero-v3 {
+  display: flex;
+  position: relative;
+  isolation: isolate;
+  min-width: 0;
+  overflow: hidden;
+  color: #fff;
+  background:
+    radial-gradient(ellipse at 84% 52%, rgba(255,184,192,.15), transparent 48%),
+    linear-gradient(115deg,#ff344c 0%,#ff5269 58%,#ff8594 100%) !important;
+}
+/* Overrides old round ornaments without touching the right panel. */
+.finora-auth-refined aside.fn-auth-hero-v3::before {
+  content: "";
+  position: absolute;
+  inset: auto -22% 7% auto;
+  width: min(70%,630px);
+  aspect-ratio: 1;
+  height: auto;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 0 0 57px rgba(255,255,255,.024),
+              0 0 0 116px rgba(255,255,255,.012);
+  pointer-events: none;
+  z-index: 0;
+}
+.finora-auth-refined aside.fn-auth-hero-v3::after { content: none !important; }
+
+.finora-auth-refined aside.fn-auth-hero-v3 > .fn-v3-shell {
+  position: relative;
+  z-index: 1;
+  display: grid !important;
+  grid-template-rows: auto minmax(0,1fr) auto;
+  align-items: stretch;
+  width: 100%;
+  min-width: 0;
+  min-height: 100dvh;
+  padding: clamp(28px,4.5vh,44px) clamp(30px,4.3vw,66px) !important;
+  gap: 16px !important;
+  margin: 0 !important;
+  background: transparent !important;
+}
+.fn-auth-hero-v3 .fn-v3-brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.fn-auth-hero-v3 .fn-v3-brand-mark {
+  width: 51px; height: 51px; flex: 0 0 51px;
+  display: grid; place-items: center;
+  border-radius: 15px; border: 1px solid rgba(255,255,255,.43);
+  background: rgba(255,255,255,.15); box-shadow: inset 0 1px rgba(255,255,255,.22);
+  color: #fff; font-size: 29px; font-weight: 800;
+}
+.fn-auth-hero-v3 .fn-v3-brand-word { font-size: 32px; line-height: 1; font-weight: 800; letter-spacing: -.065em; }
+.fn-auth-hero-v3 .fn-v3-brand-word span { opacity: .68; }
+.fn-auth-hero-v3 .fn-v3-brand-caption { display:block; margin-top:5px; font-size:9px; font-weight:800; letter-spacing:1.8px; opacity:.89; }
+
+.finora-auth-refined aside.fn-auth-hero-v3 .fn-v3-stage {
+  position: relative;
+  display: grid !important;
+  grid-template-columns: minmax(0,1.43fr) minmax(0,.96fr) !important;
+  gap: clamp(4px,1vw,16px) !important;
+  align-self: center;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  min-height: min(68dvh, 650px);
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+.finora-auth-refined aside.fn-auth-hero-v3 .fn-v3-copy {
+  position: relative; z-index: 2; min-width: 0;
+  padding: 0 !important; margin: 0;
+  background: none !important; border: none !important; box-shadow: none !important;
+}
+.fn-auth-hero-v3 .fn-v3-kicker {
+  display: inline-flex; align-items: center; gap: 9px;
+  max-width: 100%; min-height: 31px; padding: 7px 12px;
+  border-radius: 999px;
+  font-size: 9px; line-height: 1.4; font-weight: 800; letter-spacing: .95px;
+  white-space: normal; color: #fff;
+  border: 1px solid rgba(255,255,255,.32); background: rgba(255,255,255,.12);
+}
+.fn-auth-hero-v3 .fn-v3-kicker i,
+.fn-auth-hero-v3 .fn-v3-secure i {
+  display: inline-block; flex: 0 0 7px; width: 7px; height: 7px;
+  border-radius: 50%; background: #57e7b1;
+  box-shadow: 0 0 0 4px rgba(87,231,177,.13);
+}
+.finora-auth-refined aside.fn-auth-hero-v3 .fn-v3-title {
+  margin: 23px 0 0 !important;
+  padding: 0 !important;
+  max-width: 650px !important;
+  color: #fff !important;
+  font-size: clamp(45px,3.62vw,56px) !important;
+  font-weight: 800 !important;
+  line-height: 1.13 !important;
+  letter-spacing: -.058em !important;
+  text-wrap: balance;
+}
+.fn-auth-hero-v3 .fn-v3-title span { display: block; }
+.finora-auth-refined aside.fn-auth-hero-v3 .fn-v3-intro {
+  margin: 18px 0 0 !important;
+  max-width: 510px !important;
+  color: rgba(255,255,255,.93) !important;
+  font-size: 13.3px !important;
+  line-height: 1.85 !important;
+  font-weight: 500;
+}
+.fn-auth-hero-v3 .fn-v3-features {
+  display: grid; grid-template-columns: repeat(2,minmax(0,1fr));
+  width: 100%; gap: 12px; margin-top: 30px;
+}
+.fn-auth-hero-v3 .fn-v3-feature {
+  min-width: 0; min-height: 144px; padding: 17px 17px 15px;
+  border: 1px solid rgba(255,255,255,.31); border-radius: 17px;
+  color: #fff; background: rgba(255,255,255,.10);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.10);
+  transition: transform .22s ease,background .22s ease;
+}
+.fn-auth-hero-v3 .fn-v3-feature:hover { transform: translateY(-3px); background: rgba(255,255,255,.16); }
+.fn-auth-hero-v3 .fn-v3-feature-icon {
+  display: grid; place-items:center; width:34px; height:34px;
+  border:1px solid rgba(255,255,255,.33); border-radius:10px;
+  background:rgba(255,255,255,.12); margin-bottom: 11px;
+}
+.fn-auth-hero-v3 .fn-v3-feature strong {
+  display:block; color:#fff; font-size:19px; line-height:1.25; font-weight:800; letter-spacing:-.035em;
+}
+.fn-auth-hero-v3 .fn-v3-feature p {
+  margin:6px 0 0; color:rgba(255,255,255,.91); font-size:10.5px; line-height:1.6;
+}
+/* The original WEBP includes a pale color field: multiply + soft mask
+   integrates the pale field with ruby background instead of a rectangle. */
+.finora-auth-refined aside.fn-auth-hero-v3 .fn-v3-visual {
+  position: relative; z-index: 1; min-width: 0;
+  width: 100%; height: min(70dvh,650px); min-height: 460px;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0; padding: 0; background: transparent;
+  pointer-events: none;
+}
+.fn-auth-hero-v3 .fn-v3-visual-light {
+  position: absolute; inset: 13% -14% 8% -10%; pointer-events: none;
+  background: radial-gradient(ellipse at 50% 46%,rgba(255,154,168,.22),transparent 70%);
+}
+.finora-auth-refined aside.fn-auth-hero-v3 .fn-v3-visual img {
+  position: relative !important;
+  display: block !important;
+  inset: auto !important;
+  width: 115% !important;
+  max-width: 440px !important;
+  height: auto !important;
+  max-height: 100% !important;
+  margin: 0 !important;
+  object-fit: contain;
+  transform: translateX(-4%) translateY(1%) !important;
+  animation: none !important;
+  mix-blend-mode: multiply;
+  opacity: .98;
+  filter: saturate(1.16) contrast(1.04) !important;
+  -webkit-mask-image: radial-gradient(ellipse 89% 79% at 50% 48%,#000 52%,rgba(0,0,0,.95) 65%,transparent 94%);
+  mask-image: radial-gradient(ellipse 89% 79% at 50% 48%,#000 52%,rgba(0,0,0,.95) 65%,transparent 94%);
+}
+.fn-auth-hero-v3 .fn-v3-footer {
+  display:flex; align-items:center; justify-content:space-between;
+  flex-wrap:wrap; gap:12px; padding: 0;
+  color:rgba(255,255,255,.83); font-size:10px; line-height:1.6;
+}
+.fn-auth-hero-v3 .fn-v3-secure {
+  display:inline-flex; align-items:center; gap:10px; padding:7px 12px;
+  border-radius:999px; border:1px solid rgba(255,255,255,.24); background:rgba(255,255,255,.08);
+}
+/* Responsive: hero is always hidden on mobile, as original authentication screen. */
+@media (max-width:1023px) {
+  .finora-auth-refined aside.fn-auth-hero-v3 { display:none !important; }
+}
+@media (min-width:1024px) and (max-width:1320px) {
+  .finora-auth-refined aside.fn-auth-hero-v3 > .fn-v3-shell { padding-left:30px !important; padding-right:26px !important; }
+  .finora-auth-refined aside.fn-auth-hero-v3 .fn-v3-stage { grid-template-columns:minmax(0,1.38fr) minmax(0,.8fr) !important; }
+  .finora-auth-refined aside.fn-auth-hero-v3 .fn-v3-title { font-size:clamp(40px,3.65vw,48px) !important; }
+  .finora-auth-refined aside.fn-auth-hero-v3 .fn-v3-visual { min-height:350px; }
+  .fn-auth-hero-v3 .fn-v3-feature { min-height:126px; padding:13px; }
+}
+@media (min-width:1024px) and (max-width:1150px) {
+  .finora-auth-refined aside.fn-auth-hero-v3 .fn-v3-stage { grid-template-columns:1fr !important; min-height:auto; }
+  .finora-auth-refined aside.fn-auth-hero-v3 .fn-v3-visual { display:none !important; }
+}
+@media (min-width:1024px) and (max-height:780px) {
+  .finora-auth-refined aside.fn-auth-hero-v3 > .fn-v3-shell { padding-top:24px !important; padding-bottom:24px !important; }
+  .finora-auth-refined aside.fn-auth-hero-v3 .fn-v3-stage { min-height: min(72dvh,560px); }
+  .finora-auth-refined aside.fn-auth-hero-v3 .fn-v3-visual { height:min(73dvh,560px); min-height:340px; }
+  .finora-auth-refined aside.fn-auth-hero-v3 .fn-v3-title { font-size:clamp(40px,3.4vw,50px) !important; margin-top:16px !important; }
+  .fn-auth-hero-v3 .fn-v3-features { margin-top:19px; }
+  .fn-auth-hero-v3 .fn-v3-feature { min-height:120px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .fn-auth-hero-v3 .fn-v3-feature { transition:none; }
+}
+
+/* FINORA — ASTRA INFINITA FOOTER LINK */
+
+.fn-auth-hero-v3 .fn-v3-astra-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 14px;
+
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 999px;
+
+  font-size: 10px;
+  letter-spacing: .1px;
+
+  transition:
+    background .2s ease,
+    border-color .2s ease,
+    transform .2s ease;
+}
+
+.fn-auth-hero-v3 .fn-v3-astra-link strong {
+  font-weight: 800;
+  color: #fff;
+}
+
+.fn-auth-hero-v3 .fn-v3-astra-link:hover {
+  background: rgba(255,255,255,.22);
+  border-color: rgba(255,255,255,.55);
+  transform: translateY(-2px);
+}
+
+.fn-auth-hero-v3 .fn-v3-astra-link:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+</style>
 </head>
 <body>
 <div class="min-h-screen relative overflow-hidden finora-auth-refined">
@@ -1207,152 +1456,84 @@
     
     <!-- LEFT HERO -->
    
-<!-- ==========================================
-     FINORA — PREMIUM SAVINGS HERO
-     Login / Register / Forgot Password
-     ========================================== -->
+<!-- FINORA AUTH HERO — COMPACT IMMERSIVE V3 -->
+<aside class="hidden lg:flex fn-auth-saving-hero fn-auth-hero-v3" aria-label="Tentang Finora">
+  <div class="fn-v3-shell">
 
-<aside
-  class="hidden lg:flex fn-auth-saving-hero"
-  aria-label="Tentang Finora"
->
-
-  <div class="fn-auth-hero-inner">
-
-    <!-- BRAND -->
-    <header class="fn-auth-brand">
-
-      <div class="fn-auth-brand-logo">F</div>
-
-      <div class="fn-auth-brand-identity">
-        <div class="fn-auth-brand-name">
-          finora<span>.</span>
-        </div>
-
-        <span class="fn-auth-brand-caption">
-          PERSONAL WEALTH WORKSPACE
-        </span>
+    <!-- Identity: do not touch auth form on the right -->
+    <header class="fn-v3-brand">
+      <div class="fn-v3-brand-mark" aria-hidden="true">F</div>
+      <div class="fn-v3-brand-type">
+        <div class="fn-v3-brand-word">finora<span>.</span></div>
+        <span class="fn-v3-brand-caption">PERSONAL WEALTH WORKSPACE</span>
       </div>
-
     </header>
 
-    <!-- HERO MAIN CONTENT -->
-   <!-- HERO MAIN CONTENT -->
-<section class="fn-auth-hero-main">
+    <!-- Single, vertically balanced hero stage -->
+    <section class="fn-v3-stage" aria-labelledby="fnV3HeroTitle">
+      <div class="fn-v3-copy">
+        <div class="fn-v3-kicker"><i aria-hidden="true"></i> PERSONAL WEALTH WORKSPACE</div>
 
-      <!-- LEFT CONTENT -->
-      <section class="fn-auth-hero-copy">
-
-        <div class="fn-auth-hero-eyebrow">
-          <span class="fn-auth-live-dot"></span>
-          PERSONAL WEALTH WORKSPACE
-        </div>
-
-        <h1 class="fn-auth-hero-heading">
+        <h1 id="fnV3HeroTitle" class="fn-v3-title">
           Uang lebih tertata.
           <span>Impian lebih dekat.</span>
         </h1>
 
-        <p class="fn-auth-hero-description">
-          Catat transaksi, buat kantong tabungan,
-          kelola target keuangan, dan pahami kondisi
-          finansial dalam satu ruang pribadi yang
-          aman dan terstruktur.
+        <p class="fn-v3-intro">
+          Catat transaksi, buat kantong tabungan, kelola target keuangan,
+          dan pahami kondisi finansial dalam satu ruang pribadi yang aman dan terstruktur.
         </p>
 
-        <!-- FEATURES -->
-        <div class="fn-auth-value-grid">
-
-          <article class="fn-auth-value-card">
-            <div class="fn-auth-value-icon">
-              <svg viewBox="0 0 24 24"
-                   width="20" height="20"
-                   fill="none"
-                   stroke="currentColor"
-                   stroke-width="1.8"
-                   stroke-linecap="round"
-                   stroke-linejoin="round">
-                <rect x="5" y="10" width="14"
-                      height="11" rx="2"/>
-                <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
-                <path d="M12 14v3"/>
+        <div class="fn-v3-features">
+          <article class="fn-v3-feature">
+            <div class="fn-v3-feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="21" height="21">
+                <rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/><path d="M12 14v3"/>
               </svg>
             </div>
-
             <strong>Privat</strong>
-            <p>
-              Database terpisah per akun
-              dan kontrol sesi personal.
-            </p>
+            <p>Database terpisah per akun dengan kendali sesi personal.</p>
           </article>
-
-          <article class="fn-auth-value-card">
-            <div class="fn-auth-value-icon">
-              <svg viewBox="0 0 24 24"
-                   width="20" height="20"
-                   fill="none"
-                   stroke="currentColor"
-                   stroke-width="1.8"
-                   stroke-linecap="round"
-                   stroke-linejoin="round">
-                <path d="M4 20V11"/>
-                <path d="M10 20V5"/>
-                <path d="M16 20v-8"/>
-                <path d="M22 20V3"/>
+          <article class="fn-v3-feature">
+            <div class="fn-v3-feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="21" height="21">
+                <path d="M4 20V11M10 20V5M16 20v-8M22 20V3"/>
               </svg>
             </div>
-
             <strong>Lengkap</strong>
-            <p>
-              Budget, investasi,
-              laporan, dan automasi.
-            </p>
+            <p>Budget, investasi, laporan dan automasi dalam satu tempat.</p>
           </article>
-
         </div>
-
-      </section>
-
-      <!-- RIGHT ILLUSTRATION -->
-      <div class="fn-auth-saving-visual" aria-hidden="true">
-
-        <div class="fn-auth-visual-aura"></div>
-
-        <img
-          src="./finora-saving-person.webp"
-          alt=""
-          class="fn-auth-saving-art"
-          width="400"
-          height="670"
-          decoding="async"
-          loading="eager"
-          fetchpriority="low"
-        />
-
       </div>
 
-   </section>
+      <!-- Intentionally part of the hero background, not a white card -->
+      <div class="fn-v3-visual" aria-hidden="true">
+        <span class="fn-v3-visual-light"></span>
+        <img src="./finora-saving-person.webp"
+             alt="" width="400" height="670"
+             decoding="async" loading="eager" fetchpriority="low" />
+      </div>
+    </section>
 
-<!-- HERO FOOTER -->
-
-    <!-- HERO FOOTER -->
-    <footer class="fn-auth-hero-footer">
-
-      <span>
-        © Finora · Built for mindful money management
-      </span>
-
-      <span class="fn-auth-secure-label">
-        <span class="fn-auth-live-dot"></span>
-        Member Access
-      </span>
+    <footer class="fn-v3-footer">
+      <span>© Finora · Built for mindful money management</span>
+      
+<a
+  href="https://astrainfinita.vercel.app/#home"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="fn-v3-secure fn-v3-astra-link"
+  title="Kunjungi Astra Infinita"
+>
+  <i aria-hidden="true"></i>
+Part of <strong>Astra Infinita</strong>
+  <span aria-hidden="true">↗</span>
+</a>
 
     </footer>
-
   </div>
-
 </aside>
-<!-- END FINORA SAVINGS HERO -->
+<!-- END FINORA AUTH HERO V3 -->
 
 
     <!-- RIGHT PANEL -->
