@@ -790,64 +790,527 @@
 
 </style>
 
+<style>
+/* ==========================================
+   FINORA — SAVINGS HERO REFINED
+   Scoped, balanced and responsive
+   ========================================== */
+
+.finora-auth-refined aside.fn-auth-saving-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-width: 0;
+
+  color: #ffffff;
+
+  background:
+    radial-gradient(
+      circle at 100% 72%,
+      rgba(255,255,255,.11),
+      transparent 50%
+    ),
+    linear-gradient(
+      132deg,
+      #ff3347 0%,
+      #ff5268 57%,
+      #ff8293 100%
+    ) !important;
+}
+
+/* Decorative ambient element */
+.fn-auth-saving-hero::before {
+  content: "";
+  position: absolute;
+  width: 470px;
+  height: 470px;
+  right: -230px;
+  top: 22%;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.18);
+  box-shadow:
+    0 0 0 65px rgba(255,255,255,.035),
+    0 0 0 130px rgba(255,255,255,.025);
+  pointer-events: none;
+}
+
+/* Inner layout */
+.finora-auth-refined aside.fn-auth-saving-hero
+> .fn-auth-hero-inner {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  width: 100%;
+  min-height: 100dvh;
+  min-width: 0;
+
+  padding: 42px clamp(36px, 5vw, 78px) !important;
+  gap: 30px;
+}
+
+/* BRAND */
+
+.fn-auth-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.fn-auth-brand-logo {
+  display: grid;
+  place-items: center;
+
+  width: 49px;
+  height: 49px;
+  flex: 0 0 49px;
+
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.46);
+
+  background: rgba(255,255,255,.14);
+  color: #fff;
+
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.fn-auth-brand-identity {
+  min-width: 0;
+}
+
+.fn-auth-brand-name {
+  font-size: 31px;
+  font-weight: 800;
+  letter-spacing: -.065em;
+  line-height: 1.1;
+}
+
+.fn-auth-brand-name span {
+  opacity: .7;
+}
+
+.fn-auth-brand-caption {
+  display: block;
+  margin-top: 3px;
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: 1.7px;
+  opacity: .85;
+}
+
+/* MAIN: TEXT AND ILLUSTRATION */
+
+.fn-auth-hero-main {
+  position: relative;
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1.48fr)
+    minmax(0, 1fr);
+
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-width: 0;
+}
+
+.fn-auth-hero-copy {
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+}
+
+/* Eyebrow */
+.fn-auth-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+
+  max-width: 100%;
+  padding: 8px 12px;
+  border-radius: 100px;
+
+  background: rgba(255,255,255,.13);
+  border: 1px solid rgba(255,255,255,.32);
+
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.fn-auth-live-dot {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 7px;
+
+  display: inline-block;
+  border-radius: 50%;
+  background: #49e6aa;
+  box-shadow: 0 0 0 4px rgba(73,230,170,.14);
+}
+
+/* Headline */
+.finora-auth-refined aside.fn-auth-saving-hero
+.fn-auth-hero-heading {
+  margin: 23px 0 0 !important;
+  max-width: 100% !important;
+
+  font-size: clamp(40px, 3.25vw, 53px) !important;
+  line-height: 1.13 !important;
+  letter-spacing: -.055em !important;
+  font-weight: 800 !important;
+
+  color: #fff;
+}
+
+.fn-auth-hero-heading span {
+  display: block;
+}
+
+/* Description */
+.finora-auth-refined aside.fn-auth-saving-hero
+.fn-auth-hero-description {
+  max-width: 490px !important;
+  margin: 17px 0 0 !important;
+
+  font-size: 12.5px !important;
+  line-height: 1.85 !important;
+
+  color: rgba(255,255,255,.91) !important;
+}
+
+/* VALUE CARDS */
+
+.fn-auth-value-grid {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 11px;
+  margin-top: 27px;
+}
+
+.fn-auth-value-card {
+  min-width: 0;
+  padding: 15px;
+  border-radius: 16px;
+
+  background: rgba(255,255,255,.11);
+  border: 1px solid rgba(255,255,255,.26);
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  transition:
+    background .2s ease,
+    transform .2s ease;
+}
+
+.fn-auth-value-card:hover {
+  background: rgba(255,255,255,.17);
+  transform: translateY(-2px);
+}
+
+.fn-auth-value-icon {
+  display: grid;
+  place-items: center;
+
+  width: 34px;
+  height: 34px;
+  margin-bottom: 12px;
+
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.29);
+  background: rgba(255,255,255,.15);
+}
+
+.fn-auth-value-card strong {
+  display: block;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -.035em;
+}
+
+.fn-auth-value-card p {
+  margin: 5px 0 0;
+  font-size: 10px;
+  line-height: 1.65;
+  color: rgba(255,255,255,.84);
+}
+
+/* SAVING ILLUSTRATION */
+
+.fn-auth-saving-visual {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  min-width: 0;
+  display: grid;
+  place-items: center;
+}
+
+.fn-auth-visual-aura {
+  position: absolute;
+  inset: 16% -10% 13%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255,255,255,.11),
+    transparent 72%
+  );
+  pointer-events: none;
+}
+
+.finora-auth-refined aside.fn-auth-saving-hero
+.fn-auth-saving-visual .fn-auth-saving-art {
+  position: relative !important;
+  inset: auto !important;
+
+  display: block !important;
+
+  width: 100% !important;
+  max-width: 350px !important;
+  height: auto !important;
+  max-height: 550px !important;
+
+  margin: 0 auto !important;
+  object-fit: contain;
+
+  opacity: .98;
+  transform: none !important;
+  animation: none !important;
+
+  filter: drop-shadow(
+    0 18px 28px rgba(108,17,43,.13)
+  ) !important;
+
+  -webkit-mask-image:
+    radial-gradient(
+      ellipse 82% 81% at 50% 50%,
+      #000 61%,
+      transparent 100%
+    );
+
+  mask-image:
+    radial-gradient(
+      ellipse 82% 81% at 50% 50%,
+      #000 61%,
+      transparent 100%
+    );
+}
+
+/* FOOTER */
+
+.fn-auth-hero-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  font-size: 10px;
+  color: rgba(255,255,255,.77);
+}
+
+.fn-auth-secure-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 12px;
+
+  border-radius: 99px;
+  border: 1px solid rgba(255,255,255,.23);
+  background: rgba(255,255,255,.09);
+}
+
+/* RESPONSIVE DESKTOP */
+
+@media (min-width: 1024px) and (max-width: 1299px) {
+  .fn-auth-hero-main {
+    grid-template-columns: 1fr;
+  }
+
+  .fn-auth-saving-visual {
+    display: none;
+  }
+
+  .finora-auth-refined aside.fn-auth-saving-hero
+  .fn-auth-hero-heading {
+    font-size: clamp(39px, 4vw, 50px) !important;
+  }
+}
+
+/* MOBILE: original compact login layout remains */
+
+@media (max-width: 1023px) {
+  .fn-auth-saving-hero {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fn-auth-value-card {
+    transition: none !important;
+  }
+
+  .fn-auth-value-card:hover {
+    transform: none;
+  }
+}
+</style>
+
 </head>
 <body>
 <div class="min-h-screen relative overflow-hidden finora-auth-refined">
   <div class="grid min-h-screen lg:grid-cols-[minmax(0,1.12fr)_minmax(420px,520px)]">
     
     <!-- LEFT HERO -->
-    <aside class="relative hidden lg:flex bg-finora-hero text-white overflow-hidden finora-noise finora-hero-ring">
-      <div class="relative z-10 flex min-h-screen w-full flex-col justify-between px-10 xl:px-16 py-10 xl:py-14">
-        
-        <div class="flex items-center gap-4">
-          <div class="h-16 w-16 rounded-2xl border border-white/35 bg-white/15 shadow-[0_10px_30px_rgba(255,255,255,.12)] flex items-center justify-center text-4xl font-extrabold">
-            F
-          </div>
-          <div>
-            <div class="text-[44px] font-extrabold tracking-[-0.06em] leading-none">finora<span class="opacity-70">.</span></div>
-            <div class="mt-1 text-[11px] uppercase tracking-[0.32em] font-bold text-white/80">
-              Personal Wealth Workspace
-            </div>
-          </div>
+   
+<!-- ==========================================
+     FINORA — PREMIUM SAVINGS HERO
+     Login / Register / Forgot Password
+     ========================================== -->
+
+<aside
+  class="hidden lg:flex fn-auth-saving-hero"
+  aria-label="Tentang Finora"
+>
+
+  <div class="fn-auth-hero-inner">
+
+    <!-- BRAND -->
+    <header class="fn-auth-brand">
+
+      <div class="fn-auth-brand-logo">F</div>
+
+      <div class="fn-auth-brand-identity">
+        <div class="fn-auth-brand-name">
+          finora<span>.</span>
         </div>
 
-        <div class="max-w-[720px]">
-          <div class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.28em] text-white/85 finora-card-blur">
-            <span class="h-2 w-2 rounded-full bg-emerald-300 shadow-[0_0_0_6px_rgba(110,231,183,.15)]"></span>
-            PERSONAL WEALTH WORKSPACE
-          </div>
-
-          <h1 class="mt-6 text-[54px] xl:text-[76px] leading-[0.96] tracking-[-0.07em] font-extrabold max-w-[780px]">
-            Uang lebih tertata.
-            <br>
-            Impian lebih dekat.
-          </h1>
-
-          <p class="mt-6 max-w-[560px] text-[17px] leading-8 text-white/88">
-            Catat transaksi, buat kantong tabungan, kelola target keuangan, dan pahami kondisi finansial dalam satu ruang pribadi yang elegan, aman, dan terstruktur.
-          </p>
-
-          <div class="mt-10 grid max-w-[560px] grid-cols-2 gap-4">
-            <div class="rounded-3xl border border-white/25 bg-white/12 p-5 finora-card-blur shadow-[0_18px_40px_rgba(0,0,0,.08)]">
-              <div class="text-[28px] font-extrabold tracking-[-0.05em]">Privat</div>
-              <div class="mt-2 text-sm text-white/80">Database terpisah per akun dan kontrol sesi personal.</div>
-            </div>
-            <div class="rounded-3xl border border-white/25 bg-white/12 p-5 finora-card-blur shadow-[0_18px_40px_rgba(0,0,0,.08)]">
-              <div class="text-[28px] font-extrabold tracking-[-0.05em]">Lengkap</div>
-              <div class="mt-2 text-sm text-white/80">Budget, investasi, analitik, laporan, dan automasi.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="flex items-center justify-between gap-6 flex-wrap text-sm text-white/80">
-          <div>© Finora • Built for mindful money management</div>
-          <div class="inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-4 py-2 finora-card-blur">
-            <span class="h-2.5 w-2.5 rounded-full bg-emerald-300"></span>
-            Member Access Secure Session
-          </div>
-        </div>
+        <span class="fn-auth-brand-caption">
+          PERSONAL WEALTH WORKSPACE
+        </span>
       </div>
-    </aside>
+
+    </header>
+
+    <!-- HERO MAIN CONTENT -->
+    <main class="fn-auth-hero-main">
+
+      <!-- LEFT CONTENT -->
+      <section class="fn-auth-hero-copy">
+
+        <div class="fn-auth-hero-eyebrow">
+          <span class="fn-auth-live-dot"></span>
+          PERSONAL WEALTH WORKSPACE
+        </div>
+
+        <h1 class="fn-auth-hero-heading">
+          Uang lebih tertata.
+          <span>Impian lebih dekat.</span>
+        </h1>
+
+        <p class="fn-auth-hero-description">
+          Catat transaksi, buat kantong tabungan,
+          kelola target keuangan, dan pahami kondisi
+          finansial dalam satu ruang pribadi yang
+          aman dan terstruktur.
+        </p>
+
+        <!-- FEATURES -->
+        <div class="fn-auth-value-grid">
+
+          <article class="fn-auth-value-card">
+            <div class="fn-auth-value-icon">
+              <svg viewBox="0 0 24 24"
+                   width="20" height="20"
+                   fill="none"
+                   stroke="currentColor"
+                   stroke-width="1.8"
+                   stroke-linecap="round"
+                   stroke-linejoin="round">
+                <rect x="5" y="10" width="14"
+                      height="11" rx="2"/>
+                <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+                <path d="M12 14v3"/>
+              </svg>
+            </div>
+
+            <strong>Privat</strong>
+            <p>
+              Database terpisah per akun
+              dan kontrol sesi personal.
+            </p>
+          </article>
+
+          <article class="fn-auth-value-card">
+            <div class="fn-auth-value-icon">
+              <svg viewBox="0 0 24 24"
+                   width="20" height="20"
+                   fill="none"
+                   stroke="currentColor"
+                   stroke-width="1.8"
+                   stroke-linecap="round"
+                   stroke-linejoin="round">
+                <path d="M4 20V11"/>
+                <path d="M10 20V5"/>
+                <path d="M16 20v-8"/>
+                <path d="M22 20V3"/>
+              </svg>
+            </div>
+
+            <strong>Lengkap</strong>
+            <p>
+              Budget, investasi,
+              laporan, dan automasi.
+            </p>
+          </article>
+
+        </div>
+
+      </section>
+
+      <!-- RIGHT ILLUSTRATION -->
+      <div class="fn-auth-saving-visual" aria-hidden="true">
+
+        <div class="fn-auth-visual-aura"></div>
+
+        <img
+          src="./assets/finora-saving-person.webp"
+          alt=""
+          class="fn-auth-saving-art"
+          width="400"
+          height="670"
+          decoding="async"
+          loading="eager"
+          fetchpriority="low"
+        />
+
+      </div>
+
+    </main>
+
+    <!-- HERO FOOTER -->
+    <footer class="fn-auth-hero-footer">
+
+      <span>
+        © Finora · Built for mindful money management
+      </span>
+
+      <span class="fn-auth-secure-label">
+        <span class="fn-auth-live-dot"></span>
+        Member Access
+      </span>
+
+    </footer>
+
+  </div>
+
+</aside>
+<!-- END FINORA SAVINGS HERO -->
+
 
     <!-- RIGHT PANEL -->
     <main class="relative flex items-center justify-center px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
